@@ -1,17 +1,23 @@
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
-import { DashboardTabs } from "@/components/dashboard/dashboard-tabs";
+import { DashboardClient } from "./dashboard-client";
+import { permissionService, roleService } from "@/lib/services/rbac";
 
 export default async function DashboardPage() {
-  const supabase = await createClient();
+  const supabase = createClient();
 
-  const { data, error } = await supabase.auth.getClaims();
-  if (error || !data?.claims) {
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) {
     redirect("/auth/login");
   }
 
+  const [roles, permissions] = await Promise.all([
+    roleService.getAllWithPermissions(),
+    permissionService.getAll(),
+  ]);
+
   return (
-    <div className="container mx-auto py-8">
+    <div className="w-full max-w-7xl px-4">
       <div className="mb-8">
         <h1 className="text-3xl font-bold tracking-tight">RBAC Configuration Tool</h1>
         <p className="text-muted-foreground mt-2">
@@ -19,7 +25,7 @@ export default async function DashboardPage() {
         </p>
       </div>
       
-      <DashboardTabs />
+      <DashboardClient initialRoles={roles} initialPermissions={permissions} />
     </div>
   );
 }
