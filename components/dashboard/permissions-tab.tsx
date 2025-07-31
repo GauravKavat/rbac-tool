@@ -3,14 +3,12 @@
 "use client";
 
 import type { Permission } from "@/lib/types/rbac";
-import { useToast } from "@/hooks/use-toast";
 
-
-export function PermissionsTab({ permissions }: { permissions: Permission[] }) {
-
-  // Remove unused loadPermissions, startEdit, cancelEdit to fix lint errors
-
-  // Add your create, update, and delete handlers here.
+export function PermissionsTab({ permissions, onDataChange }: { 
+  permissions: Permission[];
+  onDataChange: (data: { permissions: Permission[] }) => void;
+}) {
+  // Add your state and handlers here.
   // For now, returning a simple div to resolve build errors.
 
   return (

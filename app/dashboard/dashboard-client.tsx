@@ -49,11 +49,11 @@ export function DashboardClient({ initialRoles, initialPermissions }: {
 
 
         <TabsContent value="roles">
-          <RolesTab roles={roles} />
+          <RolesTab roles={roles} onDataChange={onDataChange} />
         </TabsContent>
 
         <TabsContent value="permissions">
-          <PermissionsTab permissions={permissions} />
+          <PermissionsTab permissions={permissions} onDataChange={onDataChange} />
         </TabsContent>
 
         <TabsContent value="natural-language">

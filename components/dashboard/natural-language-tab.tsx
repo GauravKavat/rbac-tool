@@ -1,3 +1,5 @@
+// components/dashboard/natural-language-tab.tsx
+
 "use client";
 
 import { useState } from "react";
