@@ -22,7 +22,7 @@ export default function RolesClient({ roles: initialRoles, permissions, rolePerm
   const [rolePermissions, setRolePermissions] = useState<RolePermission[]>(initialRolePermissions);
   const [newRoleName, setNewRoleName] = useState<string>('');
   const [editingRole, setEditingRole] = useState<Role | null>(null);
-  const [selectedPermissions, setSelectedPermissions] = useState<Set<string>>(new Set());
+
 
   const supabase = createClient();
 
@@ -88,7 +88,7 @@ export default function RolesClient({ roles: initialRoles, permissions, rolePerm
         .filter((rp: RolePermission) => rp.role_id === role.id)
         .map((rp: RolePermission) => rp.permission_id)
     );
-    setSelectedPermissions(currentPermissions);
+
   };
   
   return (
