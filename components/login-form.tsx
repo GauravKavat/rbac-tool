@@ -1,3 +1,5 @@
+// components/login-form.tsx
+
 "use client";
 
 import { cn } from "@/lib/utils";
@@ -38,8 +40,8 @@ export function LoginForm({
         password,
       });
       if (error) throw error;
-      // Redirect to the new dashboard page
-      router.push("/dashboard");
+      // Redirect to the new post-login handler page
+      router.push("/post-login");
     } catch (error: unknown) {
       setError(error instanceof Error ? error.message : "An error occurred");
     } finally {

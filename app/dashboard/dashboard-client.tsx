@@ -1,3 +1,5 @@
+// app/dashboard/dashboard-client.tsx
+
 "use client";
 
 import { useState } from 'react';
@@ -5,8 +7,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { PermissionsTab } from "@/components/dashboard/permissions-tab";
 import { RolesTab } from "@/components/dashboard/roles-tab";
 import { RolePermissionsTab } from "@/components/dashboard/role-permissions-tab";
+import { UserManagementTab } from "@/components/dashboard/user-management-tab"; // New import
 import { NaturalLanguageTab } from "@/components/dashboard/natural-language-tab";
-import { Shield, Users, Link as LinkIcon, Bot } from "lucide-react";
+import { Shield, Users, Link as LinkIcon, Bot, UserCog } from "lucide-react"; // New icons
 import type { Permission, RoleWithPermissions } from '@/lib/types/rbac';
 
 export function DashboardClient({ initialRoles, initialPermissions }: {
@@ -23,8 +26,12 @@ export function DashboardClient({ initialRoles, initialPermissions }: {
 
   return (
     <>
-      <Tabs defaultValue="role-permissions" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-2 md:grid-cols-4">
+      <Tabs defaultValue="user-management" className="space-y-6">
+        <TabsList className="grid w-full grid-cols-2 md:grid-cols-5">
+          <TabsTrigger value="user-management" className="flex items-center gap-2">
+            <UserCog className="h-4 w-4" />
+            Users
+          </TabsTrigger>
           <TabsTrigger value="role-permissions" className="flex items-center gap-2">
             <LinkIcon className="h-4 w-4" />
             Role-Permissions
@@ -43,10 +50,13 @@ export function DashboardClient({ initialRoles, initialPermissions }: {
           </TabsTrigger>
         </TabsList>
 
+        <TabsContent value="user-management">
+          <UserManagementTab />
+        </TabsContent>
+
         <TabsContent value="role-permissions">
           <RolePermissionsTab roles={roles} permissions={permissions} onDataChange={onDataChange} />
         </TabsContent>
-
 
         <TabsContent value="roles">
           <RolesTab roles={roles} onDataChange={onDataChange} />

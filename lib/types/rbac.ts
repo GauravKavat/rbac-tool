@@ -1,3 +1,5 @@
+// lib/types/rbac.ts
+
 export interface Permission {
   id: string;
   name: string;
@@ -29,5 +31,13 @@ export interface RoleWithPermissions extends Role {
 }
 
 export interface PermissionWithRoles extends Permission {
+  roles: Role[];
+}
+
+// New type for a user with their assigned roles
+export interface UserWithRoles {
+  id: string;
+  email?: string;
+  created_at: string;
   roles: Role[];
 }
