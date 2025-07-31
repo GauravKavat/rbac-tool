@@ -94,19 +94,7 @@ export function RolePermissionsTab({ roles, permissions, onDataChange }: RolePer
 
   return (
     <div className="space-y-6">
-      <div>
-        <h2 className="text-xl font-bold mb-2">Select a Role</h2>
-        <select
-          className="w-full p-2 border rounded mb-4 bg-background text-foreground"
-          value={selectedRole}
-          onChange={e => setSelectedRole(e.target.value)}
-        >
-          <option value="" disabled>Select a role...</option>
-          {roles.map(role => (
-            <option key={role.id} value={role.id}>{role.name}</option>
-          ))}
-        </select>
-      </div>
+
 
       {selectedRole && (
         <div>
