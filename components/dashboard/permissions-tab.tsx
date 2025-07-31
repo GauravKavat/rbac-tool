@@ -5,13 +5,8 @@
 import type { Permission } from "@/lib/types/rbac";
 import { useToast } from "@/hooks/use-toast";
 
-export function PermissionsTab({ permissions, onDataChange }: {
-  permissions: Permission[],
-  onDataChange: (data: { permissions: Permission[] }) => void
-}) {
-  // const [editingId, setEditingId] = useState<string | null>(null);
-  // const [formData, setFormData] = useState({ name: "", description: "" });
-  const { toast } = useToast();
+
+export function PermissionsTab({ permissions }: { permissions: Permission[] }) {
 
   // Remove unused loadPermissions, startEdit, cancelEdit to fix lint errors
 

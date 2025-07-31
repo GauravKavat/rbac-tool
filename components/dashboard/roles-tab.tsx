@@ -2,16 +2,11 @@
 
 "use client";
 
-import type { Role, RoleWithPermissions } from "@/lib/types/rbac";
+import type { RoleWithPermissions } from "@/lib/types/rbac";
 import { useToast } from "@/hooks/use-toast";
 
-export function RolesTab({ roles, onDataChange }: {
-  roles: RoleWithPermissions[],
-  onDataChange: (data: { roles: RoleWithPermissions[] }) => void
-}) {
-  // const [editingId, setEditingId] = useState<string | null>(null);
-  // const [formData, setFormData] = useState({ name: "" });
-  const { toast } = useToast();
+
+export function RolesTab({ roles }: { roles: RoleWithPermissions[] }) {
 
   // Remove unused loadRoles, startEdit, cancelEdit to fix lint errors
 

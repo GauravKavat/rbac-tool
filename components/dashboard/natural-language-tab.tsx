@@ -151,7 +151,7 @@ export function NaturalLanguageTab() {
             Command Input
           </CardTitle>
           <CardDescription>
-            Type your command in natural language and I'll help you configure your RBAC settings
+            Type your command in natural language and I&apos;ll help you configure your RBAC settings
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -222,7 +222,7 @@ export function NaturalLanguageTab() {
           <ul className="text-sm space-y-2 text-muted-foreground">
             <li>• Use quotes around permission and role names for better accuracy</li>
             <li>• Be specific about what you want to create, assign, or remove</li>
-            <li>• Try different phrasings if a command isn't understood</li>
+            <li>• Try different phrasings if a command isn&apos;t understood</li>
             <li>• This is a demo - in production, this would integrate with a real AI API</li>
           </ul>
         </CardContent>
