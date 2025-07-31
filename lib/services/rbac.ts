@@ -1,7 +1,19 @@
+// lib/services/rbac.ts
+
 import { createClient } from '@/lib/supabase/client';
 import type { Permission, Role, RoleWithPermissions, PermissionWithRoles } from '@/lib/types/rbac';
 
 const supabase = createClient();
+
+// Define a more specific type for the join table result
+type RolePermissionWithRelations = {
+  roles: Role;
+};
+
+type PermissionWithRelations = {
+  permissions: Permission;
+};
+
 
 // Permission CRUD operations
 export const permissionService = {
@@ -76,7 +88,7 @@ export const permissionService = {
     
     return {
       ...data,
-      roles: data.role_permissions?.map((rp: any) => rp.roles) || []
+      roles: data.role_permissions?.map((rp: RolePermissionWithRelations) => rp.roles) || []
     };
   }
 };
@@ -154,7 +166,7 @@ export const roleService = {
     
     return {
       ...data,
-      permissions: data.role_permissions?.map((rp: any) => rp.permissions) || []
+      permissions: data.role_permissions?.map((rp: PermissionWithRelations) => rp.permissions) || []
     };
   },
 
@@ -173,7 +185,7 @@ export const roleService = {
     
     return (data || []).map(role => ({
       ...role,
-      permissions: role.role_permissions?.map((rp: any) => rp.permissions) || []
+      permissions: role.role_permissions?.map((rp: PermissionWithRelations) => rp.permissions) || []
     }));
   }
 };
