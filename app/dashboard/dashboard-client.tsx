@@ -8,7 +8,6 @@ import { RolePermissionsTab } from "@/components/dashboard/role-permissions-tab"
 import { NaturalLanguageTab } from "@/components/dashboard/natural-language-tab";
 import { Shield, Users, Link as LinkIcon, Bot } from "lucide-react";
 import type { Permission, RoleWithPermissions } from '@/lib/types/rbac';
-import { Toaster } from '@/components/ui/toaster';
 
 export function DashboardClient({ initialRoles, initialPermissions }: {
   initialRoles: RoleWithPermissions[],
@@ -60,7 +59,6 @@ export function DashboardClient({ initialRoles, initialPermissions }: {
           <NaturalLanguageTab />
         </TabsContent>
       </Tabs>
-      <Toaster />
     </>
   );
 }

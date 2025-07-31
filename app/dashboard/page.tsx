@@ -4,7 +4,7 @@ import { DashboardClient } from "./dashboard-client";
 import { permissionService, roleService } from "@/lib/services/rbac";
 
 export default async function DashboardPage() {
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) {

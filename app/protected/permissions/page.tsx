@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import PermissionsClient from "./permissions-client";
 
 export default async function PermissionsPage() {
-  const supabase = createClient();
+  const supabase = await createClient();
 
   const { data: { user } } = await supabase.auth.getUser();
 

@@ -1,16 +1,23 @@
 'use client';
 
+
 import { useState } from 'react';
 import { createClient } from '@/lib/supabase/client';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import type { Permission } from '@/lib/types/rbac';
 
-export default function PermissionsClient({ permissions: initialPermissions }) {
-  const [permissions, setPermissions] = useState(initialPermissions);
-  const [newPermissionName, setNewPermissionName] = useState('');
-  const [newPermissionDescription, setNewPermissionDescription] = useState('');
-  const [editingPermission, setEditingPermission] = useState(null);
+
+interface PermissionsClientProps {
+  permissions: Permission[];
+}
+
+export default function PermissionsClient({ permissions: initialPermissions }: PermissionsClientProps) {
+  const [permissions, setPermissions] = useState<Permission[]>(initialPermissions);
+  const [newPermissionName, setNewPermissionName] = useState<string>('');
+  const [newPermissionDescription, setNewPermissionDescription] = useState<string>('');
+  const [editingPermission, setEditingPermission] = useState<Permission | null>(null);
 
   const supabase = createClient();
 
@@ -43,23 +50,23 @@ export default function PermissionsClient({ permissions: initialPermissions }) {
     if (error) {
       console.error('Error updating permission:', error);
     } else if (data) {
-      setPermissions(permissions.map(p => (p.id === editingPermission.id ? data[0] : p)));
+      setPermissions(permissions.map((p: Permission) => (p.id === editingPermission.id ? data[0] as Permission : p)));
       setEditingPermission(null);
       setNewPermissionName('');
       setNewPermissionDescription('');
     }
   };
 
-  const handleDeletePermission = async (permissionId) => {
+  const handleDeletePermission = async (permissionId: string) => {
     const { error } = await supabase.from('permissions').delete().eq('id', permissionId);
     if (error) {
       console.error('Error deleting permission:', error);
     } else {
-      setPermissions(permissions.filter(p => p.id !== permissionId));
+      setPermissions(permissions.filter((p: Permission) => p.id !== permissionId));
     }
   };
 
-  const startEditing = (permission) => {
+  const startEditing = (permission: Permission) => {
     setEditingPermission(permission);
     setNewPermissionName(permission.name);
     setNewPermissionDescription(permission.description || '');
@@ -94,7 +101,7 @@ export default function PermissionsClient({ permissions: initialPermissions }) {
       </Card>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {permissions.map((permission) => (
+        {permissions.map((permission: Permission) => (
           <Card key={permission.id}>
             <CardHeader>
               <CardTitle>{permission.name}</CardTitle>
