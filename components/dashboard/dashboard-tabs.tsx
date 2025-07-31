@@ -7,7 +7,16 @@ import { RolePermissionsTab } from "./role-permissions-tab";
 import { NaturalLanguageTab } from "./natural-language-tab";
 import { Shield, Users, Link, MessageSquare } from "lucide-react";
 
-export function DashboardTabs() {
+import type { Permission } from "@/lib/types/rbac";
+import type { RoleWithPermissions } from "@/lib/types/rbac";
+
+interface DashboardTabsProps {
+  roles: RoleWithPermissions[];
+  permissions: Permission[];
+  onDataChange: (data: { roles?: RoleWithPermissions[]; permissions?: Permission[] }) => void;
+}
+
+export function DashboardTabs({ roles, permissions, onDataChange }: DashboardTabsProps) {
   return (
     <Tabs defaultValue="permissions" className="space-y-6">
       <TabsList className="grid w-full grid-cols-4">
@@ -30,15 +39,15 @@ export function DashboardTabs() {
       </TabsList>
 
       <TabsContent value="permissions">
-        <PermissionsTab />
+        <PermissionsTab permissions={permissions} onDataChange={onDataChange} />
       </TabsContent>
 
       <TabsContent value="roles">
-        <RolesTab />
+        <RolesTab roles={roles} onDataChange={onDataChange} />
       </TabsContent>
 
       <TabsContent value="role-permissions">
-        <RolePermissionsTab />
+        <RolePermissionsTab roles={roles} permissions={permissions} onDataChange={onDataChange} />
       </TabsContent>
 
       <TabsContent value="natural-language">
