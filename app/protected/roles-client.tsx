@@ -83,12 +83,7 @@ export default function RolesClient({ roles: initialRoles, permissions, rolePerm
   const startEditing = (role: Role) => {
     setEditingRole(role);
     setNewRoleName(role.name);
-    const currentPermissions = new Set(
-      rolePermissions
-        .filter((rp: RolePermission) => rp.role_id === role.id)
-        .map((rp: RolePermission) => rp.permission_id)
-    );
-
+    // If you want to use currentPermissions, handle it here, otherwise removed as unused.
   };
   
   return (

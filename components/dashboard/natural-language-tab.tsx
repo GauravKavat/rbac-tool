@@ -52,7 +52,7 @@ export function NaturalLanguageTab() {
           variant: "destructive",
         });
       }
-    } catch (error) {
+    } catch {
       toast({
         title: "Error",
         description: "Failed to process command",

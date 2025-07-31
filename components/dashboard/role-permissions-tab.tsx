@@ -34,7 +34,7 @@ export function RolePermissionsTab({ roles, permissions, onDataChange }: RolePer
       setNewRoleName("");
       setEditingRoleId(null);
       await loadRoles();
-    } catch (error) {
+    } catch {
       toast({ title: "Error", description: "Failed to save role", variant: "destructive" });
     }
   };
@@ -47,7 +47,7 @@ export function RolePermissionsTab({ roles, permissions, onDataChange }: RolePer
       toast({ title: "Role deleted", description: "Role has been deleted" });
       if (selectedRole === roleId) setSelectedRole("");
       await loadRoles();
-    } catch (error) {
+    } catch {
       toast({ title: "Error", description: "Failed to delete role", variant: "destructive" });
     }
   };
@@ -63,7 +63,7 @@ export function RolePermissionsTab({ roles, permissions, onDataChange }: RolePer
     try {
       const rolesData = await roleService.getAllWithPermissions();
       onDataChange({ roles: rolesData });
-    } catch (error) {
+    } catch {
       // ...
     }
   };
@@ -79,7 +79,7 @@ export function RolePermissionsTab({ roles, permissions, onDataChange }: RolePer
         title: "Success",
         description: "Role permissions updated successfully",
       });
-    } catch (error) {
+    } catch {
       toast({
         title: "Error",
         description: "Failed to update role permissions",
