@@ -4,7 +4,7 @@
 
 import type { RoleWithPermissions } from "@/lib/types/rbac";
 
-export function RolesTab({ roles, onDataChange }: { 
+export function RolesTab({}: { 
   roles: RoleWithPermissions[];
   onDataChange: (data: { roles: RoleWithPermissions[] }) => void;
 }) {

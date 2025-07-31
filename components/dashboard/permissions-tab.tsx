@@ -4,7 +4,7 @@
 
 import type { Permission } from "@/lib/types/rbac";
 
-export function PermissionsTab({ permissions, onDataChange }: { 
+export function PermissionsTab({}: { 
   permissions: Permission[];
   onDataChange: (data: { permissions: Permission[] }) => void;
 }) {
